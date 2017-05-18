@@ -81,12 +81,12 @@ links = [
          "An R programmer looks at Julia",
          "http://www.r-bloggers.com/an-r-programmer-looks-at-julia/")]
 
-
-# links is a list of Link objects. Links have a handful of properties. For
-# example, a Link's number of votes can be accessed by link.votes if "link" is a
-# Link.
-
 # make the function query() return the number of votes for the link whose ID is
 # 15
+def query():
+    for i in links:
+        if i.id == 15:
+            return i.votes
+print query()
 
 
