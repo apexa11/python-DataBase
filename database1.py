@@ -1,3 +1,5 @@
+
+
 from collections import namedtuple
 
 # make a basic Link class
@@ -81,12 +83,19 @@ links = [
          "An R programmer looks at Julia",
          "http://www.r-bloggers.com/an-r-programmer-looks-at-julia/")]
 
-#function query() return the number of votes for the link whose ID is
-# 15
+# function query() return a list of Links submitted by user 62443, by
+# submission time ascending
 def query():
+    submission = []
     for i in links:
-        if i.id == 15:
-            return i.votes
-print query()
+        if i.submitter_id == 62443:
+            submission.append(i)
+    submission.sort(key = lambda x:x.submitted_time)
+    return submission
 
+print query()
+        
+            
+            
+    
 
