@@ -82,6 +82,7 @@ links = [
          "An R programmer looks at Julia",
          "http://www.r-bloggers.com/an-r-programmer-looks-at-julia/")]
 
+
 # links is a list of Link objects. Links have a handful of properties. For
 # example, a Link's number of votes can be accessed by link.votes if "link" is a
 # Link.
@@ -106,10 +107,23 @@ for l in links:
 # results won't be Links; they'll be tuples, but they can be passed turned into
 # a Link.
 #
+# For example, to print all the votes for all of the links, do this:
+#
+# c = db.execute("select * from links")
+# for link_tuple in c:
+#     link = Link(*link_tuple)
+#     print link.votes
+#
+# QUIZ - make the function query() return a list of the IDs of the links 
+# that were submitted by user 62443 sorted by submission time ascending. 
 def query():
-     c = db.execute("select * from links")
-     for link_tuple in c:
-         link = Link(*link_tuple)
-         print link.title
-query()
+    result = []
+    c = db.execute("select * from links where submitter_id = 62443 order by id desc")
+    for link_tuple in c:
+        link = Link(*link_tuple)
+        result.append(link.votes)
+    return result
+print query()
+    
+
 
